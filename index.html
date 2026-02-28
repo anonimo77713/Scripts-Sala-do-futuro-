@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Painel Sala do Futuro</title>
+<title>Painel Sala do Futuro 2026</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -12,15 +12,15 @@ body{
     background:black;
     font-family:Consolas, monospace;
     color:#00ff99;
-    overflow-y: scroll; /* libera rolagem */
+    overflow-y: scroll; /* liberou a rolagem */
 }
 
-/* Fundo Matrix verde */
+/* Matrix background */
 canvas{
     position:fixed;
     top:0;
     left:0;
-    z-index:-2; /* atrás de tudo */
+    z-index:-1;
 }
 
 header{
@@ -84,69 +84,70 @@ header{
 <canvas id="matrix"></canvas>
 
 <header>
-⚡ PAINEL SALA DO FUTURO 2026⚡
+⚡ PAINEL SALA DO FUTURO 2026 ⚡
 </header>
 
 <div class="container">
+
 <div class="card">
 <h2>📝 Tarefa SP</h2>
-<a href="https://taskitos.cupiditys.lol/"Abrir</a>
+<p>Acesso às atividades.</p>
+<a href="https://taskitos.cupiditys.lol/">Abrir</a>
 </div>
 
 <div class="card">
 <h2>✍️ Redação SP</h2>
+<p>Produção de textos.</p>
 <a href="https://crimsonzerohub.xyz/redacao">Abrir</a>
 </div>
 
 <div class="card">
 <h2>📖 Leia SP</h2>
+<p>Leitura e livros digitais.</p>
 <a href="https://leiasp.cupiditys.lol/">Abrir</a>
 </div>
 
 <div class="card">
 <h2>🎓 Alura SP</h2>
+<p>Cursos e tecnologia.</p>
 <a href="https://crimsonzerohub.xyz/alura">Abrir</a>
 </div>
 
-<!-- Mais cartões para testar scroll -->
-<div class="card">
-<h2>📊 Status Escolar</h2>
-<a href="#">Abrir</a>
+
 </div>
 
-<div class="card">
-<h2>📌 Recursos Extras</h2>
-<a href="#">Abrir</a>
-</div>
 </div>
 
 <script>
-// Fundo Matrix verde
+/* Matrix effect */
 const canvas = document.getElementById("matrix");
 const ctx = canvas.getContext("2d");
 
 canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
 
-const letters = "01アイウエオカキクケコサシスセソ";
+const letters = "アァイィウヴエカキクケコサシスセソ0123456789";
 const fontSize = 14;
-const columns = canvas.width / fontSize;
-const drops = [];
+const columns = canvas.width/fontSize;
 
-for(let x = 0; x < columns; x++) drops[x] = 1;
+const drops = [];
+for(let x=0; x<columns; x++)
+    drops[x] = 1;
 
 function draw(){
-    ctx.fillStyle = "rgba(0,0,0,0.05)";
-    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = "#00ff99"; // letra verde
+    ctx.fillStyle = "#00ff99";
     ctx.font = fontSize + "px monospace";
 
-    for(let i=0;i<drops.length;i++){
-        const text = letters.charAt(Math.floor(Math.random() * letters.length));
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+    for(let i=0; i<drops.length; i++){
+        const text = letters.charAt(Math.floor(Math.random()*letters.length));
+        ctx.fillText(text, i*fontSize, drops[i]*fontSize);
 
-        if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        if(drops[i]*fontSize > canvas.height && Math.random() > 0.975)
+            drops[i] = 0;
+
         drops[i]++;
     }
 }
